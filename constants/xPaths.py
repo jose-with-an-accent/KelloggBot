@@ -18,9 +18,9 @@ XPATHS_2 = {
     'pn': '//*[@id="fbclc_phoneNumber"]',
 }
 
-APPLY_NOW_BUTTON_1 = '//*[@id="content"]/div/div[2]/div/div[1]/div[1]/div/div/button'
-APPLY_NOW_BUTTON_2 = '//*[@id="applyOption-top-manual"]'
-CREATE_AN_ACCOUNT_BUTTON = '//*[@id="page_content"]/div[2]/div/div/div[2]/div/div/div[2]/a'
+APPLY_NOW_BUTTON_1 = '//*[@id="EFSmartApplyContainer"]/div/div[2]/div/div/div[4]/div/span/button'
+# APPLY_NOW_BUTTON_2 = '//*[@id="applyOption-top-manual"]'
+CREATE_AN_ACCOUNT_ANCHORTAG = '//*[@id="page_content"]/div[2]/div/div/div[2]/div/div/div[2]/a'
 READ_ACCEPT_DATA_PRIVACY_STATEMENT_ANCHORTAG = '//*[@id="dataPrivacyId"]'
 ACCEPT_BUTTON = '//*[@id="dlgButton_20:"]'
 CREATE_ACCOUNT_BUTTON = '//*[@id="fbclc_createAccountButton"]'

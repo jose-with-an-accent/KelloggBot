@@ -51,19 +51,20 @@ def start_driver(random_city):
     options = Options()
     if (args.debug == DEBUG_DISABLED):
         options.add_argument(f"user-agent={USER_AGENT}")
+        options.add_argument(f"referrer={REFERRER}")
         options.add_argument('disable-blink-features=AutomationControlled')
-        options.headless = True
+        options.headless = False
         driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
         driver.set_window_size(1440, 900)
     elif (args.debug == DEBUG_ENABLED):
         driver = webdriver.Chrome(ChromeDriverManager().install())
-    driver.get(CITIES_TO_URLS[random_city])
+    driver.get(LOCATIONS_TO_URLS[random_city])
     driver.implicitly_wait(10)
     time.sleep(15)
     #WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.XPATH, CREATE_AN_ACCOUNT_BUTTON)))
     driver.find_element_by_xpath(APPLY_NOW_BUTTON_1).click()
-    driver.find_element_by_xpath(APPLY_NOW_BUTTON_2).click()
-    driver.find_element_by_xpath(CREATE_AN_ACCOUNT_BUTTON).click()
+    # driver.find_element_by_xpath(APPLY_NOW_BUTTON_2).click()
+    driver.find_element_by_xpath(CREATE_AN_ACCOUNT_ANCHORTAG).click()
     return driver
 
 
@@ -149,7 +150,7 @@ def fill_out_application_and_submit(driver, random_city, fake_identity):
         elif key == 'city':
             info = random_city
         elif key == 'zip':
-            info = CITIES_TO_ZIP_CODES[random_city]
+            info = LOCATIONS_TO_ZIP_CODES[random_city]
         elif key == 'job':
             info = fake.job()
         elif key == 'salary':
@@ -232,14 +233,14 @@ def random_phone(format=None):
 
 def main():
     while True:
-        random_city = random.choice(list(CITIES_TO_URLS.keys()))
+        random_city = random.choice(list(LOCATIONS_TO_URLS.keys()))
         try:
             driver = start_driver(random_city)
         except Exception as e:
             printf(f"FAILED TO START DRIVER: {e}")
             pass
 
-        time.sleep(2)
+        time.sleep(6)
 
         fake_first_name = fake.first_name()
         fake_last_name = fake.last_name()
