@@ -1,6 +1,7 @@
 # KrogerBot, based on KellogsBot
 [Setup](#setup)\
 [Usage](#usage)
+
 Folks, don't union bust please.
 
 Credit to SeanDaBlack for the basis of the script.
