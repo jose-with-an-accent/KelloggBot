@@ -1,4 +1,4 @@
-# KelloggBot
+# KrogerBot, based on KellogsBot
 [Setup](#setup)\
 [Usage](#usage)
 

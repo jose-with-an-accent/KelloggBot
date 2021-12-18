@@ -60,9 +60,10 @@ def start_driver(random_city):
         driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(LOCATIONS_TO_URLS[random_city])
     driver.implicitly_wait(10)
-    time.sleep(15)
+    time.sleep(5)
     #WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.XPATH, CREATE_AN_ACCOUNT_BUTTON)))
     driver.find_element_by_xpath(APPLY_NOW_BUTTON_1).click()
+    driver.switch_to_window(driver.window_handles[1])
     # driver.find_element_by_xpath(APPLY_NOW_BUTTON_2).click()
     driver.find_element_by_xpath(CREATE_AN_ACCOUNT_ANCHORTAG).click()
     return driver
@@ -85,15 +86,11 @@ def generate_account(driver, fake_identity):
             info = fake_identity['last_name']
         elif key == 'pn':
             info = fake_identity['phone']
-
         driver.find_element_by_xpath(XPATHS_2.get(key)).send_keys(info)
 
     time.sleep(random.randint(0, 2))
     select = Select(driver.find_element_by_id(COUNTRY_REGION_CODE_LABEL))
     select.select_by_value(COUNTRY_CODE_US)
-    select = Select(driver.find_element_by_id(COUNTRY_REGION_OF_RESIDENCE_LABEL))
-    select.select_by_value(COUNTRY_CODE_US)
-
     driver.find_element_by_xpath(READ_ACCEPT_DATA_PRIVACY_STATEMENT_ANCHORTAG).click()
     time.sleep(1.5)
     driver.find_element_by_xpath(ACCEPT_BUTTON).click()
